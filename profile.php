@@ -49,7 +49,9 @@ if(!isset($_SESSION['auth'])) {
 						<div>Email : <?php echo $_SESSION['auth']['email']; ?></div>
 					</div>
 					<div class="card-footer mx-auto">
-						<a class="btn btn-primary" href="./edit-profile.php">Edit</a>
+                        <form action="" method="POST">
+						<a class="btn btn-primary" type="submit" href="./edit-profile.php">Edit</a>
+                        </form>
 					</div>
 				</div>
 			</div>
