@@ -1,8 +1,13 @@
 <?php
-include_once './init.php';
+include_once 'init.php';
+//include_once './post-create.php';
 if (!isset($_SESSION['auth'])) {
     redirect('login.php');
 }
+$sql = "SELECT * FROM post";
+$result = mysqli_query($conn,$sql);
+$post = mysqli_fetch_assoc($result);
+
 ?>
 
 
@@ -10,8 +15,7 @@ if (!isset($_SESSION['auth'])) {
 
 
 <!DOCTYPE html>
-<html lang="en">
-
+<html>
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -54,14 +58,21 @@ if (!isset($_SESSION['auth'])) {
         <div class="row">
             <div class="col-md-8">
                 <div class="card-header">
-                    <?php if($_SERVER['REQUEST_METHOD'] == 'POST'){
-                        echo "$title";
-
-                    } ?>
+                    <h3><?php echo $post['title']; ?></h3>
+                </div>
+                <div class="card-body">
+                    <p><?php echo $post['body']; ?></p>
+                </div>
+                <div class="card-footer">
+                    <?php 
+                    $sql = "SELECT * FROM users";
+                    $result = mysqli_query($conn,$sql);
+                    $user = mysqli_fetch_assoc($result);
+                    ?>
+                    <p>Posted by <b><?php echo $user['name']; ?></b> <i><?php echo $post['date']; ?></i></p>
                 </div>
             </div>
         </div>
     </div>
 </body>
-
 </html>

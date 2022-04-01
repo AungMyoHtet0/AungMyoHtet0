@@ -1,22 +1,12 @@
 <?php
-include_once './init.php';
-$errors = [];
+include_once 'init.php';
 if (!isset($_SESSION['auth'])) {
     redirect('login.php');
 }
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $id = $_SESSION['auth']['id'];
-    $title = $_POST['title'];
-    $body = $_POST['body'];
-    if (!$title) {
-        $errors = 'Title is required!';
-    }
-    if (!$body) {
-        $errors = 'Content is required';
-    }
 
-}
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -47,7 +37,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     </div>
     <div class="container mt-5">
         <div class="row">
-            <form action="./post-create.php" method="POST">
+            <form action="./post-store.php" method="POST">
                 <input type="hidden" name="id" value="<?php echo $_SESSION['auth']['id'] ?>">
                 <div class="card-header">
                     <h2>Post Create</h2>
@@ -56,23 +46,22 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     <div class="form-floating">
 
                         <input class="form-control" type="text" name="title" placeholder="Title">
-                        <?php if (isset($errors['title'])) : ?>
-                            <div><?php echo $errors['title']; ?></div>
+                        <?php if (isset($_SESSION['error']['title'])) : ?>
+                            <div><?php echo $_SESSION['error']['title']; ?></div>
                         <?php endif; ?>
                         <label for="title">Title</label>
                     </div>
-                    <div class="form-floating mt-3">
-                        <textarea class="form-control" name="body" cols="30" rows="10" placeholder="Content"></textarea>
-                        <label for="body">Content</label>
-                    </div>
+                        <textarea class="form-control mt-3 " name="body" rows="10" placeholder="Content"></textarea>
+                        <?php if(isset($_SESSION['error']['body'])): ?>
+                        <div><?php echo $_SESSION['error']['body'] ?></div>
+                        <?php endif; ?>
+                        
                 </div>
                 <div class="card-footer">
-                    <p></p>
-                    <button class="btn btn-success" type="submit">Post</button>
+                    <input class="btn btn-success" type="submit" value="POST">
                 </div>
             </form>
         </div>
     </div>
 </body>
-
 </html>
