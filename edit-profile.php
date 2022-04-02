@@ -8,6 +8,7 @@ $id = $_SESSION['auth']['id'];
 $sql = "SELECT * FROM users WHERE id='$id'";
 $result = mysqli_query($conn, $sql);
 $user = mysqli_fetch_assoc($result);
+//bee($_SESSION);
 
 $errors = [];
 
@@ -83,7 +84,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 					<div class="card-body">
 						<form  method="post">
 							
-							<input class="form-control" type="text" name="name">
+							<input class="form-control" type="text" name="name" value="<?php echo $_SESSION['auth']['name']; ?>">
 							<?php if(isset($errors['name'])): ?>
 							<div><?php echo $errors['name'] ?></div>
 							<?php endif; ?>

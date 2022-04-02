@@ -36,10 +36,10 @@ $post = mysqli_fetch_assoc($result);
     </style>
 </head>
 
-<body>
+<body class="bg-light">
     <!--**********************nav bar*****************-->
     <div class="container-fluid">
-        <div class=" row bg-dark">
+        <div class=" row bg-success">
             <div class=" col-md-4">
                 <h2 class="text-white text-center"><?php echo $_SESSION['auth']['name']; ?></h2>
             </div>
@@ -54,27 +54,31 @@ $post = mysqli_fetch_assoc($result);
         </div>
     </div>
     <!--**********************nav bar end*****************-->
+    <?php if(isset($post)): ?>
     <div class="container mt-5">
         <div class="row">
             <div class="col-md-8">
-                <div class="card-header">
+                <form action="" method="GET">
+                <div class="card-header ">
                     <h3><?php echo $post['title']; ?></h3>
                 </div>
-                <div class="card-body">
+                <div class="card-body ">
                     <p><?php echo $post['body']; ?></p>
                 </div>
-                <div class="card-footer">
+                <div class="card-footer bg-secondary">
                     <?php 
                     $sql = "SELECT * FROM users";
                     $result = mysqli_query($conn,$sql);
                     $user = mysqli_fetch_assoc($result);
                     ?>
-                    <p>Posted by <b><?php echo $user['name']; ?></b> <i><?php echo $post['date']; ?></i></p>
-                    <a class="btn btn-success" href="#">Edit</a>
-                    <a class="btn btn-danger" href="./post-delete.php?<?php echo redirect('user_id' . $_GET['post_id']); ?>">Delete</a>
+                    <p>Posted by <b><?php echo $user['name']; ?></b> <i><?php echo date('M d,Y'); ?></i></p>
+                    <a class="btn btn-success" href="post-edit.php">Edit</a>
+                    <a class="btn btn-danger" href="<?php echo('post-delete.php?post_id=' . $post['id']); ?>">Delete</a>
                 </div>
+                </form>
             </div>
         </div>
     </div>
+    <?php endif; ?>
 </body>
 </html>
