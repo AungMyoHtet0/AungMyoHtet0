@@ -70,6 +70,8 @@ $post = mysqli_fetch_assoc($result);
                     $user = mysqli_fetch_assoc($result);
                     ?>
                     <p>Posted by <b><?php echo $user['name']; ?></b> <i><?php echo $post['date']; ?></i></p>
+                    <a class="btn btn-success" href="#">Edit</a>
+                    <a class="btn btn-danger" href="./post-delete.php?<?php echo redirect('user_id' . $_GET['post_id']); ?>">Delete</a>
                 </div>
             </div>
         </div>
