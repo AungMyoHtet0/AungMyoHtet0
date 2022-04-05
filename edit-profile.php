@@ -60,7 +60,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <body>
     <!--**********************nav bar*****************-->
     <div class="container-fluid">
-        <div class=" row bg-dark">
+        <div class=" row bg-success">
             <div class=" col-md-4">
                 <h2 class="text-white text-center"><?php echo $_SESSION['auth']['name']; ?></h2>
             </div>

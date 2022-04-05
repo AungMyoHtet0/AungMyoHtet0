@@ -26,7 +26,7 @@ if(!isset($_SESSION['auth'])) {
     </style>
 <body>
 <div class="container-fluid">
-        <div class=" row bg-dark">
+        <div class=" row bg-success">
             <div class=" col-md-4">
                 <h2 class="text-white text-center"><?php echo $_SESSION['auth']['name']; ?></h2>
             </div>
@@ -42,7 +42,7 @@ if(!isset($_SESSION['auth'])) {
     </div>
 		<div class="container">
 			<div class="row justify-content-center">
-				<div class="col-md-6 card my-5 rounded bg-dark text-white">
+				<div class="col-md-6 card my-5 rounded bg-success text-white">
 					<div class="card-header text-center"><h2>Profile</h2></div>
 					<div class="card-body text-center">
 						<div>Name : <?php echo $_SESSION['auth']['name']; ?></div>
